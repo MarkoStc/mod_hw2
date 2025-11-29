@@ -38,7 +38,7 @@ def run_alg(alg, f, x_init, y_init, n_iterations=1000, *args, **kwargs):
         y_sequence.append(y.detach().numpy().copy())
     return np.array(x_sequence), np.array(y_sequence)
 
-def visualize_seq(L_x, L_y, dim_pair):
+def visualize_seq(L_x, L_y, dim_pair, figure_name=None):
     dim_names = ["Rock", "Paper", "Scissors", "Lizard", "Spock"]
     plt.style.use('seaborn-v0_8-poster')
     plt.gca().add_patch(Polygon([(0, 0), (1.0, 0), (0, 1.0)],
@@ -58,6 +58,9 @@ def visualize_seq(L_x, L_y, dim_pair):
     # plt.axis('equal')
     # plt.axis('off')
     plt.tight_layout()
+    if figure_name:
+        filename = f"Part-1-plots/{figure_name}_dim_pair_{dim_pair}.png"
+        plt.savefig(filename, dpi=300, bbox_inches='tight')
     plt.show()
 
 
